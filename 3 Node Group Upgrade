@@ -1,0 +1,31 @@
+1 Why: Update the worker nodes to match the control plane version.
+
+resource "aws_eks_node_group" "example_nodes" {
+  cluster_name    = aws_eks_cluster.example.name
+  node_group_name = "example-nodes"
+  node_role_arn   = aws_iam_role.eks_nodes.arn
+  version         = "1.31" # Update to 1.31
+  # ... other configurations ...
+  update_config {
+    max_unavailable = 1 # Adjust as needed
+    max_surge       = 1 # Adjust as needed
+  }
+}
+
+# terraform apply -target=aws_eks_node_group.example_nodes
+
+# Verify node versions
+aws eks describe-nodegroup --cluster-name my-eks-cluster --nodegroup-name example-nodes --query "nodegroup.version"
+kubectl get nodes
+
+
+Important Notes:
+The rolling upgrade process will automatically replace nodes.
+Monitor the progress closely.
+Pay close attention to the max unavailable and max surge values.
+
+Common Mistakes:
+Not setting appropriate max_unavailable and max_surge values, leading to application downtime.
+Ignoring PDBs, which can cause upgrade stalls.
+Not monitoring the cloudwatch logs for the node groups.
+Not having enough resources to handle the surge of nodes.
