@@ -1,0 +1,15 @@
+1: Verify Control Plane Health
+Test Commands:
+
+kubectl get nodes # Verify node connectivity
+kubectl get pods --all-namespaces # Check pod status
+kubectl cluster-info # Verify cluster information
+
+
+2 Important Notes:
+Check for any error messages or unusual behavior.
+Verify that your applications are accessible.
+
+3 Common Mistakes:
+Proceeding to node group updates without verifying control plane stability.
+Not checking the API server logs.
