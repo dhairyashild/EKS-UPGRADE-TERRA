@@ -1,0 +1,49 @@
+# Why: Update EKS add-ons to compatible versions.
+
+resource "aws_eks_addon" "vpc_cni" {
+  cluster_name = aws_eks_cluster.example.name
+  addon_name   = "vpc-cni"
+  version      = "v1.16.3-eksbuild.1" # Check the latest version
+  # ... other configurations ...
+}
+
+resource "aws_eks_addon" "coredns" {
+  cluster_name = aws_eks_cluster.example.name
+  addon_name   = "coredns"
+  version      = "v1.11.1-eksbuild.1" # Check the latest version
+  # ... other configurations ...
+}
+
+resource "aws_eks_addon" "kube-proxy" {
+  cluster_name = aws_eks_cluster.example.name
+  addon_name   = "kube-proxy"
+  version      = "v1.27.1-eksbuild.1" # Check the latest version
+  # ... other configurations ...
+}
+
+
+#Terraform Command to apply:
+terraform apply -target=aws_eks_addon.vpc_cni
+terraform apply -target=aws_eks_addon.coredns
+terraform apply -target=aws_eks_addon.kube-proxy
+
+# Test Commands (Verification):
+aws eks describe-addon --cluster-name my-eks-cluster --addon-name vpc-cni --query "addon.addon_version"
+aws eks describe-addon --cluster-name my-eks-cluster --addon-name coredns --query "addon.addon_version"
+aws eks describe-addon --cluster-name my-eks-cluster --addon-name kube-proxy --query "addon.addon_version"
+kubectl get pods -n kube-system # verify pod status.
+
+
+#Important Notes:
+Check the AWS documentation for compatible add-on versions.
+Add-on updates can cause temporary disruptions.
+
+#Common Mistakes:
+Using incompatible add-on versions, leading to cluster instability.
+Not checking the add-on logs.
+
+
+ 
+
+
+
