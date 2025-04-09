@@ -1,0 +1,14 @@
+#Why: Ensure worker nodes are functioning correctly after the upgrade.
+
+kubectl get nodes # Check node status
+kubectl get pods --all-namespaces # Verify pod distribution
+kubectl describe node <node-name> # Check node details
+
+
+
+Important Notes:
+Verify that all nodes are in the "Ready" state.
+Check for any pod scheduling issues.
+
+Common Mistakes:
+Not thoroughly testing application functionality after the upgrade.
