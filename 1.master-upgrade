@@ -1,0 +1,25 @@
+1 Why: This step tells EKS to upgrade the cluster's control plane (master nodes) to version 1.31.
+
+resource "aws_eks_cluster" "example" {
+  name     = "my-eks-cluster"
+  role_arn = aws_iam_role.eks_cluster.arn
+  version  = "1.31"                                     # Update to 1.31
+  # ... other configurations ...
+}
+
+
+2 terraform apply -target=aws_eks_cluster.example
+
+3 TEST -- Verify that the output shows "1.31".
+# aws eks describe-cluster --name my-eks-cluster --query "cluster.version"
+
+
+3 Important Notes:
+-This process can take 10-15 minutes or more.
+-Control plane upgrades are generally safe, but monitor the AWS console for any errors.
+-Do not upgrade node groups, or addons until this step is fully completed.
+
+4 Common Mistakes:
+-Not backing up the cluster configuration before the upgrade.
+-Simultaneously updating node groups or add-ons, which can lead to incompatibilities.
+-Not checking the aws service health dashboard for issues.
