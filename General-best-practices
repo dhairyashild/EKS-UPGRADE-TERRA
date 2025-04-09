@@ -1,0 +1,9 @@
+#General-best-practices
+
+Thorough Testing: Test each step in a non-production environment.
+Backups: Back up your cluster configuration and critical data.
+Monitoring: Monitor cluster health and application performance throughout the upgrade.
+Documentation: Keep detailed records of the upgrade process.
+Communication: Inform stakeholders about the upgrade schedule and potential disruptions.
+Kubernetes Release Notes: Review the Kubernetes release notes for version 1.31 to identify any breaking changes.
+AWS EKS Documentation: Regularly refer to the official AWS EKS documentation for the latest best practices.
