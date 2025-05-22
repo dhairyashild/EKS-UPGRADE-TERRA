@@ -1,0 +1,13 @@
+problem-in-upgrdaes
+
+PM: Can we just upgrade the Kubernetes cluster?
+
+DevOps: Sure. Want to handle API deprecations, node draining, webhook breakages, and network plugin issues too?
+
+PM: Wait... isn’t it just a minor upgrade?
+
+DevOps: A "minor upgrade" = the possibility of pod evictions, scheduling delays, API deprecation issues, webhook failures, CNI/CSI incompatibilities, broken manifests, resource pressure on nodes, failed rollouts, Helm chart mismatches, admission controller errors, and much more...
+
+Lesson:
+--------
+In Kubernetes, there’s no such thing as minor.
